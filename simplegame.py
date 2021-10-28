@@ -51,6 +51,7 @@ while run:
         if vel < -15:
             jump = False
             vel = 15  
+    print(y)
     #Moving the square 1
     if move_left is True:
         rect[0] -= rect[2]
@@ -76,22 +77,22 @@ while run:
             move_right1 = False 
     rect1[2] += .005
 
+    window.fill ((25, 30, 100))
     pygame.draw.circle(window, (0, 0, 0), (int(x), int(y - radius)), radius)
     pygame.draw.rect(window, (255, 0, 0), (rect[0], rect[1]-recty, rectx, recty))
     pygame.draw.rect(window, (20, 100, 0), (rect1[0], rect1[1]-recty, rectx, recty))
-    window.fill ((25, 30, 100))
     pygame.display.update()
     
     Collision = HasCollided(rect[0], rect[1], x, y)  
     if Collision == True:
-        text = font.render('Game Over Bitch!', True, green)
+        text = font.render('Game Over', True, green)
         window.blit(text, [300, modey/2])
         pygame.display.update()
         pygame.time.delay(1000)
         run = False
     Collision1 = HasCollided(rect1[0], rect1[1], x, y)  
     if Collision1 == True:
-        text = font.render('Game Over Bitch!', True, green)
+        text = font.render('Game Over', True, green)
         window.blit(text, [300, modey/2])
         pygame.display.update()
         pygame.time.delay(1000)
