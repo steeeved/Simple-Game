@@ -22,6 +22,8 @@ run, jump, move_right, move_left, move_right1, move_left1 = True, False, False, 
 #initalizing the clock method in pygame
 clock = pygame.time.Clock()
 
+src = 3
+
 
 def HasCollided(rx, ry, cx, cy):
     if cx > rx:
@@ -51,7 +53,7 @@ while run:
         if vel < -15:
             jump = False
             vel = 15  
-    print(y)
+
     #Moving the square 1
     if move_left is True:
         rect[0] -= rect[2]
@@ -84,18 +86,45 @@ while run:
     pygame.display.update()
     
     Collision = HasCollided(rect[0], rect[1], x, y)  
+    score = font.render('Points:', True, green)
+    disp = font.render(str(src), True, green)
+    window.blit(disp, [670, 10])
+    window.blit(score, [550, 10])
+    pygame.display.update()
+    pygame.time.delay(100)
+
+    scr = 0
     if Collision == True:
-        text = font.render('Game Over', True, green)
-        window.blit(text, [300, modey/2])
-        pygame.display.update()
-        pygame.time.delay(1000)
-        run = False
-    Collision1 = HasCollided(rect1[0], rect1[1], x, y)  
+        scr -= 1
+        if scr == 0:
+            text =font.render('Game Over', True, green)
+            window.blit(text, [300, modey/2])
+            pygame.display.update()
+            pygame.time.delay(100)
+            run = False
+
+    Collision1 = HasCollided(rect1[0], rect1[1], x, y)
     if Collision1 == True:
-        text = font.render('Game Over', True, green)
-        window.blit(text, [300, modey/2])
-        pygame.display.update()
-        pygame.time.delay(1000)
-        run = False
+        scr -= 1
+        if scr == 0:
+            text =font.render('Game Over', True, green)
+            window.blit(text, [300, modey/2])
+            pygame.display.update()
+            pygame.time.delay(100)
+            run = False
+
+    # if Collision == True:
+    #     text = font.render('Game Over', True, green)
+    #     window.blit(text, [300, modey/2])
+    #     pygame.display.update()
+    #     pygame.time.delay(1000)
+    #     run = False
+    # Collision1 = HasCollided(rect1[0], rect1[1], x, y)
+    # if Collision1 == True:
+    #     text = font.render('Game Over', True, green)
+    #     window.blit(text, [300, modey/2])
+    #     pygame.display.update()
+    #     pygame.time.delay(1000)
+    #     run = False
 
 pygame.quit()
